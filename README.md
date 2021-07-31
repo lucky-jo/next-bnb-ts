@@ -36,3 +36,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 npx create-next-app --ts
 
 npm i -D @types/node @types/react-dom
+
+npm i styled-components babel-plugin-styled-components
+
+npm i -D @types/styled-components
+
+npm i babel-plugin-inline-react-svg
+
+npm i styled-reset
