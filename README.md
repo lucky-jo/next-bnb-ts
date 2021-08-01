@@ -44,3 +44,8 @@ npm i -D @types/styled-components
 npm i babel-plugin-inline-react-svg
 
 npm i styled-reset
+
+npm install @material-ui/icons
+npm install @material-ui/core
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
