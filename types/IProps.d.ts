@@ -8,3 +8,12 @@
 //   disabledOptions?: string[];
 //   defaultValue: string;
 // }
+import react from "react";
+
+interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  icon?: JSX.Element;
+  isValid?: boolean;
+  validateMode?: boolean;
+  useValidation?: boolean;
+  errorMessage?: string;
+}
