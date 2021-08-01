@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { IProps } from "../../../types/IProps";
 import palette from "../../styles/palette";
+import { useSelector } from "../../../store";
 
 const Container = styled.div<InputContainerProps>`
   input {
@@ -64,12 +65,12 @@ const Container = styled.div<InputContainerProps>`
 
 const Input: React.FC<IProps> = ({
   icon,
-  validateMode = true,
   isValid = false,
   useValidation = true,
   errorMessage = "",
   ...props
 }) => {
+  const validateMode = useSelector((state) => state.common.validateMode);
   return (
     <Container
       iconExist={!!icon}
