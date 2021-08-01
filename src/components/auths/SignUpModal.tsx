@@ -13,6 +13,8 @@ import palette from "../../styles/palette";
 import Selector from "../commons/Selector";
 import Button from "../commons/Button";
 import { signUpAPI } from "../../lib/auth";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../../store/user";
 
 const Container = styled.form`
   width: 568px;
@@ -68,6 +70,7 @@ const SignUpModal: React.FC = () => {
   const [birthYear, setBirthYear] = useState<string | undefined>();
   const [birthDay, setBirthDay] = useState<string | undefined>();
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
+  const dispatch = useDispatch();
 
   // 이메일 주소 변경시
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,7 +118,9 @@ const SignUpModal: React.FC = () => {
           `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
         ).toISOString(),
       };
+      // const { data } = await signUpAPI(signUpBody);
       await signUpAPI(signUpBody);
+      dispatch(userActions.setLoggedUser(signUpBody));
     } catch (err) {
       console.log(err);
     }

@@ -56,3 +56,6 @@ npm i jsonwebtoken
 npm i @types/jsonwebtoken
 
 npm i axios
+
+npm i next-redux-wrapper @reduxjs/toolkit react-redux redux
+npm i @types/react-redux
