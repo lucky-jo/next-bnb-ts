@@ -11,6 +11,7 @@ import Input from "../commons/Input";
 import { monthList, dayList, yearList } from "../../lib/staticData";
 import palette from "../../styles/palette";
 import Selector from "../commons/Selector";
+import Button from "../commons/Button";
 
 const Container = styled.div`
   width: 568px;
@@ -180,6 +181,9 @@ const SignUpModal: React.FC = () => {
               onChange={onChangeBirthYear}
             />
           </div>
+        </div>
+        <div>
+          <Button type="submit"> 가입 하기</Button>
         </div>
       </div>
     </Container>

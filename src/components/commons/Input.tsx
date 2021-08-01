@@ -34,7 +34,7 @@ const Input: React.FC<IModal> = ({ icon, ...props }) => {
   return (
     <Container iconExist={!!icon}>
       <input {...props} />
-      <div>{icon}</div>
+      <div className="input-icon-wrapper">{icon}</div>
     </Container>
   );
 };
