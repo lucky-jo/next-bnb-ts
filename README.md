@@ -49,3 +49,10 @@ npm install @material-ui/icons
 npm install @material-ui/core
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+npm i bcryptjs
+npm i -D @types/bcryptjs
+
+npm i jsonwebtoken
+npm i @types/jsonwebtoken
+
+npm i axios

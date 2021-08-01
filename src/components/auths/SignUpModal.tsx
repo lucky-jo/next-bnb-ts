@@ -12,8 +12,9 @@ import { monthList, dayList, yearList } from "../../lib/staticData";
 import palette from "../../styles/palette";
 import Selector from "../commons/Selector";
 import Button from "../commons/Button";
+import { signUpAPI } from "../../lib/auth";
 
-const Container = styled.div`
+const Container = styled.form`
   width: 568px;
   height: 614px;
   padding: 32px;
@@ -98,11 +99,30 @@ const SignUpModal: React.FC = () => {
   const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthYear(event.target.value);
   };
+  // 회원가입 폼 제출
+  const onSubmitSignUp = async (
+    event: React.ChangeEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
 
-  //
+    try {
+      const signUpBody = {
+        email,
+        lastname,
+        firstname,
+        password,
+        birthday: new Date(
+          `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
+        ).toISOString(),
+      };
+      await signUpAPI(signUpBody);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignUp}>
       <div>
         <Close />
         <div className="input-wrapper">
@@ -183,7 +203,7 @@ const SignUpModal: React.FC = () => {
           </div>
         </div>
         <div>
-          <Button type="submit"> 가입 하기</Button>
+          <Button type="submit">가입 하기</Button>
         </div>
       </div>
     </Container>

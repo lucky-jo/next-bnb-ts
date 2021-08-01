@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import AribnbLogoIcon from "../../public/static/svg/logo/logo.svg";
+import AribnbLogoIcon from "../../public/static/svg/logos/logo.svg";
 import Link from "next/link";
 import palette from "../styles/palette";
 import useModal from "./hooks/useModal";
