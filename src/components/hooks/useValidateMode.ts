@@ -6,8 +6,10 @@ export default () => {
   const dispatch = useDispatch();
   const validateMode = useSelector((state) => state.common.validateMode);
 
-  const setValidateMode = (value: boolean) =>
-    dispatch(commonActions.setValidateMode(value));
+  const setValidateMode = (value: boolean) => {
+    console.log("123123123");
+    return dispatch(commonActions.setValidateMode(value));
+  };
 
   return { validateMode, setValidateMode };
 };

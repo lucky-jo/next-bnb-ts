@@ -31,7 +31,7 @@ const reducer = (state: any, action: any) => {
 };
 
 // 타입 지원되는 커스텀 useSelector 만들기
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
+const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
 const initStore: MakeStore<any> = () => {
   const store = configureStore({
@@ -42,4 +42,6 @@ const initStore: MakeStore<any> = () => {
   return store;
 };
 
-export const wrapper = createWrapper(initStore);
+const wrapper = createWrapper(initStore);
+
+export { useSelector, wrapper };

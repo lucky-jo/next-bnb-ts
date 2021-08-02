@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import AribnbLogoIcon from "../../public/static/svg/logos/logo.svg";
 import Link from "next/link";
@@ -80,8 +80,7 @@ const Container = styled.div`
 `;
 
 const Header: React.FC = () => {
-  const [modalOpened, setModalOpend] = useState(false);
-  const { openModal, ModalPortal } = useModal();
+  const { openModal, closeModal, ModalPortal } = useModal();
 
   return (
     <Container>
@@ -104,7 +103,7 @@ const Header: React.FC = () => {
       </div>
 
       <ModalPortal>
-        <SignUpModal />
+        <SignUpModal closeModal={closeModal} />
       </ModalPortal>
     </Container>
   );
