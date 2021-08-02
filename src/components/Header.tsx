@@ -5,6 +5,8 @@ import Link from "next/link";
 import palette from "../styles/palette";
 import useModal from "./hooks/useModal";
 import SignUpModal from "./auths/SignUpModal";
+import { useSelector } from "../../store";
+import { Menu } from "@material-ui/icons";
 
 const Container = styled.div`
   position: sticky;
@@ -26,7 +28,7 @@ const Container = styled.div`
     }
   }
   .header-auth-buttons {
-    .header-signup-button {
+    .header-sign-up-button {
       height: 42px;
       margin-right: 8px;
       padding: 0 16px;
@@ -77,10 +79,32 @@ const Container = styled.div`
       z-index: 11;
     }
   }
+  .header-user-profile {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 6px 0 16px;
+    border: 0;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18);
+    border-radius: 21px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+    }
+    .header-user-profile-image {
+      margin-left: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  }
 `;
 
 const Header: React.FC = () => {
   const { openModal, closeModal, ModalPortal } = useModal();
+  const user = useSelector((state) => state.user);
 
   return (
     <Container>
@@ -89,18 +113,27 @@ const Header: React.FC = () => {
           <AribnbLogoIcon className="header-logo" />
         </a>
       </Link>
-      <div>
-        <button
-          type="button"
-          className="header-signup-button"
-          onClick={openModal}
-        >
-          회원가입
-        </button>
-        <button type="button" className="header-login-button">
-          로그인
-        </button>
-      </div>
+      {!user.isLogged && (
+        <div className="header-auth-buttons">
+          <button
+            type="button"
+            className="header-sign-up-button"
+            onClick={openModal}
+          >
+            회원가입
+          </button>
+          <button type="button" className="header-login-button">
+            로그인
+          </button>
+        </div>
+      )}
+      {user.isLogged && (
+        <div>
+          <button type="button" className="header-user-profile">
+            <Menu></Menu>
+          </button>
+        </div>
+      )}
 
       <ModalPortal>
         <SignUpModal closeModal={closeModal} />

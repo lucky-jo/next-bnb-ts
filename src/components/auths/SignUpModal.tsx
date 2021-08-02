@@ -19,6 +19,7 @@ import useValidateMode from "../hooks/useValidateMode";
 import PasswordWarning from "./PasswordWarning";
 import useModal from "../hooks/useModal";
 import { useSelector } from "../../../store";
+import { authActions } from "../../../store/auth";
 
 const Container = styled.form`
   width: 568px;
@@ -74,7 +75,7 @@ interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   disabledOptions?: string[];
   value?: string;
   isValid?: boolean;
-  closeModal?(): void;
+  closeModal: () => void;
 }
 
 const PASSWROD_MIN_LENGTH: number = 8;
@@ -151,6 +152,10 @@ const SignUpModal: React.FC<IProps> = ({
   const onFocusPassword = () => {
     setPasswordFocused(true);
   };
+  // 로그인 모달로 변경
+  const changeToLoginModal = () => {
+    dispatch(authActions.setAuthMode("login"));
+  };
 
   // 회원가입 폼 유효성 확인
   const validateSignUpform = () => {
@@ -176,8 +181,8 @@ const SignUpModal: React.FC<IProps> = ({
     event.preventDefault();
     console.log("1212");
 
-    setValidateMode(true);
     if (!validateSignUpform()) {
+      setValidateMode(true);
       return undefined;
     }
 
@@ -193,7 +198,6 @@ const SignUpModal: React.FC<IProps> = ({
       };
       // const { data } = await signUpAPI(signUpBody);
       await signUpAPI(signUpBody);
-      dispatch(commonActions.setValidateMode(true));
       closeModal();
     } catch (err) {
       console.log(err);
@@ -337,7 +341,7 @@ const SignUpModal: React.FC<IProps> = ({
         <span
           className="sign-up-modal-set-login"
           role="presentation"
-          onClick={() => {}}
+          onClick={changeToLoginModal}
         >
           로그인
         </span>

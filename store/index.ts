@@ -6,11 +6,13 @@ import {
 } from "react-redux";
 import user from "./user";
 import common from "./common";
+import auth from "./auth";
 import { RootState } from "../types/RootState";
 
 const rootReducer = combineReducers({
   user: user.reducer,
   common: common.reducer,
+  auth: auth.reducer,
 });
 
 // 스토어 타입
