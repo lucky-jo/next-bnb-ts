@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import AribnbLogoIcon from "../../public/static/svg/logos/logo.svg";
 import Link from "next/link";
+import AirbnbLogoIcon from "../../../public/static/svg/logos/logo.svg";
+import AirbnbLogoTextIcon from "../../../public/static/svg/logos/logo_text.svg";
 import palette from "../../styles/palette";
-import useModal from "../hooks/useModal";
-import SignUpModal from "../auth/SignUpModal";
 import { useSelector } from "../../../store";
-import { Menu } from "@material-ui/icons";
+
+import HeaderAuths from "./HeaderAuths";
+import HeaderUserProfile from "./HeaderUserProfile";
 
 const Container = styled.div`
   position: sticky;
@@ -17,7 +18,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 80px;
-  background-color: #fff;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
   z-index: 10;
   .header-logo-wrapper {
@@ -34,9 +35,10 @@ const Container = styled.div`
       padding: 0 16px;
       border: 0;
       border-radius: 21px;
-      background-color: #fff;
+      background-color: white;
       cursor: pointer;
       outline: none;
+      font-weight: 600;
       &:hover {
         background-color: ${palette.gray_f7};
       }
@@ -47,36 +49,13 @@ const Container = styled.div`
       border: 0;
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18);
       border-radius: 21px;
-      background-color: #fff;
+      background-color: white;
       cursor: pointer;
       outline: none;
+      font-weight: 600;
       &:hover {
-        background-color: 0px 2px 8px rgba(0, 0, 0, 0.12);
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
       }
-    }
-  }
-
-  .modal-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    .modal-background {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.75);
-      z-index: 10;
-    }
-    .modal-contents {
-      width: 400px;
-      height: 400px;
-      background-color: #fff;
-      z-index: 11;
     }
   }
   .header-user-profile {
@@ -87,7 +66,7 @@ const Container = styled.div`
     border: 0;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18);
     border-radius: 21px;
-    background-color: #fff;
+    background-color: white;
     cursor: pointer;
     outline: none;
     &:hover {
@@ -100,44 +79,52 @@ const Container = styled.div`
       border-radius: 50%;
     }
   }
+
+  .header-logo-wrapper + div {
+    position: relative;
+  }
+
+  .header-usermenu {
+    position: absolute;
+    right: 0;
+    top: 52px;
+    width: 240px;
+    padding: 8px 0;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background-color: white;
+    li {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 42px;
+      padding: 0 16px;
+      cursor: pointer;
+      &:hover {
+        background-color: ${palette.gray_f7};
+      }
+    }
+    .header-usermenu-divider {
+      width: 100%;
+      height: 1px;
+      margin: 8px 0;
+      background-color: ${palette.gray_dd};
+    }
+  }
 `;
 
 const Header: React.FC = () => {
-  const { openModal, closeModal, ModalPortal } = useModal();
-  const user = useSelector((state) => state.user);
-
+  const isLogged = useSelector((state) => state.user.isLogged);
   return (
     <Container>
       <Link href="/">
         <a className="header-logo-wrapper">
-          <AribnbLogoIcon className="header-logo" />
+          <AirbnbLogoIcon className="header-logo" />
+          <AirbnbLogoTextIcon />
         </a>
       </Link>
-      {!user.isLogged && (
-        <div className="header-auth-buttons">
-          <button
-            type="button"
-            className="header-sign-up-button"
-            onClick={openModal}
-          >
-            회원가입
-          </button>
-          <button type="button" className="header-login-button">
-            로그인
-          </button>
-        </div>
-      )}
-      {user.isLogged && (
-        <div>
-          <button type="button" className="header-user-profile">
-            <Menu></Menu>
-          </button>
-        </div>
-      )}
-
-      <ModalPortal>
-        <SignUpModal closeModal={closeModal} />
-      </ModalPortal>
+      {!isLogged && <HeaderAuths />}
+      {isLogged && <HeaderUserProfile />}
     </Container>
   );
 };
