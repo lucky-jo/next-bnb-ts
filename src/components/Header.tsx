@@ -4,7 +4,7 @@ import AribnbLogoIcon from "../../public/static/svg/logos/logo.svg";
 import Link from "next/link";
 import palette from "../styles/palette";
 import useModal from "./hooks/useModal";
-import SignUpModal from "./auths/SignUpModal";
+import SignUpModal from "./auth/SignUpModal";
 import { useSelector } from "../../store";
 import { Menu } from "@material-ui/icons";
 

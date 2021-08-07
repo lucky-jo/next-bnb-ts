@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
-import { getList, resister, existEmail } from "../../../lib/user";
+import { getList, resister, existEmail } from "../../../lib/data/user";
 import jwt from "jsonwebtoken";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

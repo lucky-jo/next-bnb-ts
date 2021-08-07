@@ -6,8 +6,8 @@ import Input from "../commons/Input";
 import { Close, Mail, VisibilityOff, Visibility } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../store/auth";
-import { loginAPI } from "../../lib/auth";
-import useValidateMode from "../../components/hooks/useValidateMode";
+import { loginAPI } from "../../lib/api/auth";
+import useValidateMode from "../hooks/useValidateMode";
 
 const Container = styled.form`
   width: 568px;
@@ -74,7 +74,7 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
     dispatch(authActions.setAuthMode("signup"));
   };
   // 로그인 클릭시
-  const onSubmitLogin = async (event: React.FormEvent<HTMLFontElement>) => {
+  const onSubmitLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setValidateMode();
 
@@ -124,7 +124,9 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
         ></Input>
       </div>
       <div className="login-modal-submit-button-wrapper">
-        <Button type="submit">로그인</Button>
+        <Button type="submit" onClick={onSubmitLogin as any}>
+          로그인
+        </Button>
       </div>
       <p>
         이미 에어비앤비 계정이 있으신가요?

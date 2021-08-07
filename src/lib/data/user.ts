@@ -27,8 +27,14 @@ const resister = async (users: StoredUser[]): Promise<boolean> => {
 };
 
 // email 로 유저 조회
-const find = ({ email }: { email: string }): StoredUser | undefined => {
-  return getList().find((user) => user.email === email);
+const findEmailOrId = ({
+  email,
+  id,
+}: {
+  email: string;
+  id: string;
+}): StoredUser | undefined => {
+  return getList().find((user) => user.email === email || user.id === id);
 };
 
-export { getList, existEmail, resister, find };
+export { getList, existEmail, resister, findEmailOrId };
