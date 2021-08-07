@@ -31,10 +31,10 @@ const findEmailOrId = ({
   email,
   id,
 }: {
-  email: string;
-  id: string;
+  email?: string;
+  id?: number;
 }): StoredUser | undefined => {
   return getList().find((user) => user.email === email || user.id === id);
 };
 
-export { getList, existEmail, resister, findEmailOrId };
+export default { getList, existEmail, resister, findEmailOrId };

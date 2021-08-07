@@ -59,3 +59,6 @@ npm i axios
 
 npm i next-redux-wrapper @reduxjs/toolkit react-redux redux
 npm i @types/react-redux
+
+npm i react-outside-click-handler
+npm i -D @types/react-outside-click-handler

@@ -7,11 +7,11 @@ import {
   Visibility,
   VisibilityOff,
 } from "@material-ui/icons";
-import Input from "../commons/Input";
+import Input from "../common/Input";
 import { monthList, dayList, yearList } from "../../lib/staticData";
 import palette from "../../styles/palette";
-import Selector from "../commons/Selector";
-import Button from "../commons/Button";
+import Selector from "../common/Selector";
+import Button from "../common/Button";
 import { signUpAPI } from "../../lib/api/auth";
 import { useDispatch } from "react-redux";
 import { commonActions } from "../../../store/common";

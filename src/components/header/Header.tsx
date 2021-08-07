@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import AribnbLogoIcon from "../../public/static/svg/logos/logo.svg";
 import Link from "next/link";
-import palette from "../styles/palette";
-import useModal from "./hooks/useModal";
-import SignUpModal from "./auth/SignUpModal";
-import { useSelector } from "../../store";
+import palette from "../../styles/palette";
+import useModal from "../hooks/useModal";
+import SignUpModal from "../auth/SignUpModal";
+import { useSelector } from "../../../store";
 import { Menu } from "@material-ui/icons";
 
 const Container = styled.div`

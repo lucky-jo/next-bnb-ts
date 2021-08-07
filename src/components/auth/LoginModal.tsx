@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import palette from "../../styles/palette";
-import Button from "../commons/Button";
-import Input from "../commons/Input";
+import Button from "../common/Button";
+import Input from "../common/Input";
 import { Close, Mail, VisibilityOff, Visibility } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../store/auth";
