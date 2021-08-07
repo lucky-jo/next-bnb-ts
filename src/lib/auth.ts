@@ -9,3 +9,7 @@ export const signUpAPI = async (body: SignUpAPIBody): Promise<boolean> => {
     return false;
   }
 };
+
+export const loginAPI = (body: { email: string; password: string }) => {
+  axios.post<IUser>("/api/auth/login", body);
+};

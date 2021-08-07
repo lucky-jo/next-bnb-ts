@@ -6,6 +6,7 @@ import Input from "../commons/Input";
 import { Close, Mail, VisibilityOff, Visibility } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../store/auth";
+import { loginAPI } from "../../lib/auth";
 
 const Container = styled.form`
   width: 568px;
@@ -63,13 +64,29 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
     setPassword(event.target.value);
   };
   // 비밀번호 아이콘 상태 변경
-  const toggleHidePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const toggleHidePassword = () => {
     setIsPasswordHide(!isPasswordHide);
   };
   // 회원가입 모달로 변경하기
   const changeToSignUpModal = () => {
     dispatch(authActions.setAuthMode("signup"));
   };
+  // 로그인 클릭시
+  const onSubmitLogin = async (event: React.FormEvent<HTMLFontElement>) => {
+    event.preventDefault();
+    if (!email || !password) {
+      alert("Please enter email and password");
+    } else {
+      const loginBody = { email: email, password: password };
+
+      try {
+        await loginAPI(loginBody);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <Container>
       <Close></Close>
