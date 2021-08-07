@@ -86,4 +86,4 @@ const Input: React.FC<IProps> = ({
   );
 };
 
-export default Input;
+export default React.memo(Input);
