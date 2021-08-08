@@ -8,11 +8,13 @@ import user from "./user";
 import common from "./common";
 import auth from "./auth";
 import { RootState } from "../types/RootState";
+import registerRoom from "./registerRoom";
 
 const rootReducer = combineReducers({
   user: user.reducer,
   common: common.reducer,
   auth: auth.reducer,
+  registerRoom: registerRoom.reducer,
 });
 
 // 스토어 타입

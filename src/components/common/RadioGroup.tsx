@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 import { useSelector } from "../../../store";
-import WarningIcon from "../../public/static/svg/common/warning.svg";
+import { Warning } from "@material-ui/icons";
 
 const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
   .radio-label {
@@ -141,7 +141,7 @@ const RadioGroup: React.FC<IProps> = ({
       </div>
       {validateMode && !isValid && (
         <div className="radio-group-warning">
-          <WarningIcon />
+          <Warning />
           <p>{errorMessage}</p>
         </div>
       )}

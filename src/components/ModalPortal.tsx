@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
-import { IModal } from "../../types/IModal";
 
 const Container = styled.div`
   width: 100%;
@@ -21,7 +20,12 @@ const Container = styled.div`
   }
 `;
 
-const ModalPortal: React.FC<IModal> = ({ children, closePortal }) => {
+interface IProps {
+  children: React.ReactNode;
+  closePortal: () => void;
+}
+
+const ModalPortal: React.FC<IProps> = ({ children, closePortal }) => {
   const ref = useRef<Element | null>();
   const [mounted, setMounted] = useState(false);
 
