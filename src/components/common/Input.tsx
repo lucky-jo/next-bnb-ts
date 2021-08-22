@@ -5,6 +5,12 @@ import palette from "../../styles/palette";
 import { useSelector } from "../../../store";
 
 const Container = styled.div<InputContainerProps>`
+  label {
+    span {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
   input {
     position: relative;
     width: 100%;
@@ -64,6 +70,7 @@ const Container = styled.div<InputContainerProps>`
 `;
 
 const Input: React.FC<IProps> = ({
+  label = "",
   icon,
   isValid = false,
   useValidation = true,
@@ -79,6 +86,12 @@ const Input: React.FC<IProps> = ({
       isValid={isValid}
       useValidation={validateMode && useValidation}
     >
+      {label && (
+        <label>
+          <span>{label}</span>
+          <input {...props} />
+        </label>
+      )}
       <input {...props} />
       <div className={inputIconWrapper}>{icon}</div>
       {useValidation && validateMode && !isValid && errorMessage && (

@@ -11,10 +11,11 @@
 import react from "react";
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
   icon?: JSX.Element;
   isValid?: boolean;
   useValidation?: boolean;
   errorMessage?: string;
   inputErrorMessage?: string;
-  inputIconWrapper? : string;
+  inputIconWrapper?: string;
 }
