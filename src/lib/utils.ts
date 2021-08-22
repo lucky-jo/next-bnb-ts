@@ -10,3 +10,9 @@ export const cookieStringToObject = (cookieString: string | undefined) => {
   }
   return cookies;
 };
+
+// string 에서  number 만 return 하는 함수
+export const getNumber = (str: string) => {
+  const numbers = str.match(/\d/g)?.join("");
+  return numbers ? Number(numbers) : null;
+};

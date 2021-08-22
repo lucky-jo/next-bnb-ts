@@ -37,4 +37,4 @@ const findEmailOrId = ({
   return getList().find((user) => user.email === email || user.id === id);
 };
 
-export default { getList, existEmail, resister, findEmailOrId };
+export { getList, existEmail, resister, findEmailOrId };

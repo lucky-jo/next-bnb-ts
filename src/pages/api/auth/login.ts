@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const Controller = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const { email, password } = req.body;
@@ -18,3 +18,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.statusCode = 405;
   return res.end();
 };
+
+export default Controller;

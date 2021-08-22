@@ -15,4 +15,6 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   isValid?: boolean;
   useValidation?: boolean;
   errorMessage?: string;
+  inputErrorMessage?: string;
+  inputIconWrapper? : string;
 }

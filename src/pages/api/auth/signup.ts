@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
-import { getList, resister, existEmail } from "../../../lib/data/user";
+import { getList, existEmail, resister } from "../../../lib/data/user";
 import jwt from "jsonwebtoken";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const Container = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const { email, firstname, lastname, password, birthday } = req.body;
@@ -55,3 +55,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 // password 암호화
 // resister userInfo
 // send resistered userInfo & token
+
+export default Container;

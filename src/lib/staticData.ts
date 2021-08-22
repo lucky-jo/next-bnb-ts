@@ -69,6 +69,16 @@ export const largeBuildingTypeList = [
   "부티크호텔",
 ];
 
+// 아파트 건물유형
+export const apartmentBuildingTypeList = [
+  "아파트",
+  "공동주택",
+  "별채",
+  "카사 파르티쿨라르(쿠바)",
+  "로프트",
+  "레지던스",
+];
+
 // 주택 건물유형
 export const houstBuildingTypeList = [
   "주택",
@@ -153,3 +163,8 @@ export const boutiquesHotelBuildingTypeList = [
   "레지던스",
   "객잔(중국)",
 ];
+
+export const bedroomCountList = Array.from(
+  { length: 16 },
+  (_, i) => `침실 ${i}개`
+);

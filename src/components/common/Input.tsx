@@ -26,21 +26,21 @@ const Container = styled.div<InputContainerProps>`
     position: absolute;
     right: 11px;
   }
-  .input-icon-wrapper {
+  /* .input-icon-wrapper {
     position: absolute;
     top: 0;
     right: 11px;
     height: 46px;
     display: flex;
     align-items: center;
-  }
+  } */
 
-  .input-error-message {
+  /* .input-error-message {
     margin-top: 8px;
     font-weight: 600;
     font-size: 14px;
     color: ${palette.tawny};
-  }
+  } */
   ${({ useValidation, isValid }) =>
     useValidation &&
     !isValid &&
@@ -68,6 +68,8 @@ const Input: React.FC<IProps> = ({
   isValid = false,
   useValidation = true,
   errorMessage = "",
+  inputErrorMessage = "",
+  inputIconWrapper = "",
   ...props
 }) => {
   const validateMode = useSelector((state) => state.common.validateMode);
@@ -78,9 +80,9 @@ const Input: React.FC<IProps> = ({
       useValidation={validateMode && useValidation}
     >
       <input {...props} />
-      <div className="input-icon-wrapper">{icon}</div>
+      <div className={inputIconWrapper}>{icon}</div>
       {useValidation && validateMode && !isValid && errorMessage && (
-        <p className="input-error-message">{errorMessage}</p>
+        <p className={inputErrorMessage}>{errorMessage}</p>
       )}
     </Container>
   );

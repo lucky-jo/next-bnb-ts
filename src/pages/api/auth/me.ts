@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from "next";
 import jwt from "jsonwebtoken";
 import Data from "../../../lib/data";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const Controller = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     try {
       const accessToken = req.headers.cookie;
@@ -33,3 +33,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   return res.end();
 };
+
+export default Controller;
