@@ -1,3 +1,5 @@
+import { BedType } from "../../types/room";
+
 // 1월 ~ 12월까지
 export const monthList = [
   "1월",
@@ -168,3 +170,19 @@ export const bedroomCountList = Array.from(
   { length: 16 },
   (_, i) => `침실 ${i}개`
 );
+
+// 침대 유형
+export const bedTypes: BedType[] = [
+  "소파",
+  "에어 매트릭스",
+  "요와 이불",
+  "싱글",
+  "더블",
+  "퀸",
+  "이층 침대",
+  "바닥용 에어매트릭스",
+  "유아 침대",
+  "유아용 침대",
+  "해먹",
+  "물침대",
+];

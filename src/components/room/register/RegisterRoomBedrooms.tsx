@@ -8,6 +8,8 @@ import Counter from "../../common/Counter";
 import { getNumber } from "../../../lib/utils";
 import Selector from "../../common/Selector";
 import { bedroomCountList } from "../../../lib/staticData";
+import RegisterRoomBedList from "./RegisterRoomBedList";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -41,6 +43,12 @@ const Container = styled.div`
   .register-room-bed-count-wrapper {
     width: 320px;
     margin-bottom: 32px;
+  }
+  .register-room-bed-type-info {
+    margin-top: 6px;
+    margin-bottom: 20px;
+    max-width: 400px;
+    word-break: keep-all;
   }
 `;
 
@@ -97,6 +105,17 @@ const RegisterRoomBedrooms: React.FC = () => {
       <div className="register-room-bed-count-wrapper">
         <Counter label="침대" value={bedCount} onChange={onChangeBedCount} />
       </div>
+      <h4>침대 유형</h4>
+      <p className="register-room-bed-type-info">
+        각 침실에 놓인 침대 유형을 명시하면 숙소에 침대가 어떻게 구비되어 있는지
+        게스트가 잘 파악할 수 있습니다.
+      </p>
+      <RegisterRoomBedList />
+      <RegisterRoomFooter
+        prevHref="/room/register/building"
+        nextHref="/room/register/bathroom"
+        isValid={!!bedroomCount}
+      />
     </Container>
   );
 };
