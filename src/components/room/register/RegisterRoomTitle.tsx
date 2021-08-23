@@ -33,7 +33,7 @@ const RegisterRoomTitle: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  //* 제목 변경시
+  // 제목 변경시
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(registerRoomActions.setTitle(event.target.value));
 
