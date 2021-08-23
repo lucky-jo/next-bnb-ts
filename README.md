@@ -64,3 +64,6 @@ npm i react-outside-click-handler
 npm i -D @types/react-outside-click-handler
 npm i -D @types/googlemaps
 npm i -D @types/lodash
+npm i lodash
+npm i formidable
+npm i -D @types/formidable

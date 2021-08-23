@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from ".";
 
 type GetLocationInfoAPIResponse = {
   country: string;
