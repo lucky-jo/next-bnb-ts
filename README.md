@@ -67,3 +67,8 @@ npm i -D @types/lodash
 npm i lodash
 npm i formidable
 npm i -D @types/formidable
+
+aws s3 파일을 업로드 하기 위해서는 aws 사용자의 엑세스 키 페어와, 파일을 저장할 s3 버킷의 이름이 필요합니다.
+
+npm i uuid
+npm i -D @types/uuid
