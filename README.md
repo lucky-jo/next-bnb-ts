@@ -74,3 +74,6 @@ aws s3 파일을 업로드 하기 위해서는 aws 사용자의 엑세스 키 �
 npm i uuid
 npm i -D @types/uuid
 npm i react-autosize-textarea
+
+npm i react-datepicker
+npm i -D @types/react-datepicker
