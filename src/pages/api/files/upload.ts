@@ -31,7 +31,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
           await s3
             .upload({
-              Bucket: process.env.S3_BUCKET_NAME!,
+              Bucket: `${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}`,
               Key: `${originalFileName}__${uuidv4()}.${fileExtension}`,
               ACL: "public-read",
               Body: stream,

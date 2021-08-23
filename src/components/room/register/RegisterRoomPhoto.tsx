@@ -6,6 +6,10 @@ import { useSelector } from "../../../../store";
 import Button from "../../../components/common/Button";
 import UploadIcon from "../../../../public/static/svg/register/upload.svg";
 import { uploadFileAPI } from "../../../lib/api/files";
+import { useDispatch } from "react-redux";
+import { registerRoomActions } from "../../../../store/registerRoom";
+import RegisterRoomPhotoCardList from "./RegisterRoomPhotoCardList";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -52,6 +56,9 @@ const Container = styled.div`
 const RegisterRoomPhoto: React.FC = () => {
   const photos = useSelector((state) => state.registerRoom.photos);
 
+  const dispatch = useDispatch();
+
+  // 이미지 업로드 하기
   const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
     if (files && files.length > 0) {
@@ -59,7 +66,12 @@ const RegisterRoomPhoto: React.FC = () => {
       const formdata = new FormData();
       formdata.append("file", file);
       try {
-        await uploadFileAPI(formdata);
+        const { data } = await uploadFileAPI(formdata);
+
+        if (data) {
+          console.log("data", data);
+          dispatch(registerRoomActions.setPhotos([...photos, data]));
+        }
       } catch (error) {
         console.log(error.message);
       }
@@ -82,6 +94,11 @@ const RegisterRoomPhoto: React.FC = () => {
           </Button>
         </div>
       )}
+      {!isEmpty(photos) && <RegisterRoomPhotoCardList photos={photos} />}
+      <RegisterRoomFooter
+        prevHref="/room/register/conveniences"
+        nextHref="/room/register/description"
+      />
     </Container>
   );
 };
