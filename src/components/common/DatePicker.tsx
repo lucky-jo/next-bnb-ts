@@ -4,6 +4,8 @@ import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
 import palette from "../../styles/palette";
 import "react-datepicker/dist/react-datepicker.css";
 
+import ko from "date-fns/locale/ko";
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -118,7 +120,7 @@ const Container = styled.div`
 const DatePicker: React.FC<ReactDatePickerProps> = ({ ...props }) => {
   return (
     <Container>
-      <ReactDatePicker {...props} disabledKeyboardNavigation />
+      <ReactDatePicker {...props} disabledKeyboardNavigation locale={ko} />
     </Container>
   );
 };

@@ -77,3 +77,4 @@ npm i react-autosize-textarea
 
 npm i react-datepicker
 npm i -D @types/react-datepicker
+npm i date-fns

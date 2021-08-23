@@ -4,6 +4,10 @@ import styled from "styled-components";
 import palette from "../../../styles/palette";
 
 import DatePicker from "../../../components/common/DatePicker";
+import { useDispatch } from "react-redux";
+import { useSelector } from "../../../../store";
+import { registerRoomActions } from "../../../../store/registerRoom";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -51,11 +55,64 @@ const Container = styled.div`
 `;
 
 const RegisterRoomDate: React.FC = () => {
+  const startDate = useSelector((state) => state.registerRoom.startDate);
+  const endDate = useSelector((state) => state.registerRoom.endDate);
+
+  const dispatch = useDispatch();
+
+  const dateStartDate = startDate ? new Date(startDate) : null;
+  const dateEndDate = endDate ? new Date(endDate) : null;
+
+  // 예약 시작 날짜 변경시
+  const onChangeStartDate = (date: Date | null) => {
+    dispatch(
+      registerRoomActions.setStartDate(date ? date.toISOString() : null)
+    );
+  };
+  // 예약 종료 날짜 변경시
+  const onChangeEndDate = (date: Date | null) => {
+    dispatch(registerRoomActions.setEndDate(date ? date.toISOString() : null));
+  };
+
   return (
     <Container>
       <h2>예약 가능 여부 설정하기</h2>
       <h3>11단계</h3>
-      <DatePicker onChange={(date: Date) => console.log(date)} />
+      <div className="register-room-date-wrapper">
+        <div className="register-room-start-date">
+          <label>
+            <span>예약 시작일</span>
+            <DatePicker
+              selected={dateStartDate}
+              onChange={onChangeStartDate}
+              monthsShown={2}
+              selectsStart
+              startDate={dateStartDate}
+              endDate={dateEndDate}
+              minDate={new Date()}
+            />
+          </label>
+        </div>
+
+        <div className="register-room-end-date">
+          <label>
+            <span>예약 마감일</span>
+            <DatePicker
+              selected={dateEndDate}
+              onChange={onChangeEndDate}
+              monthsShown={2}
+              selectsEnd
+              startDate={dateStartDate}
+              endDate={dateEndDate}
+              minDate={dateStartDate || new Date()}
+            />
+          </label>
+        </div>
+      </div>
+      <RegisterRoomFooter
+        prevHref="/room/register/price"
+        nextHref="/room/register/checklist"
+      />
     </Container>
   );
 };
