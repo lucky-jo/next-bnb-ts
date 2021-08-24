@@ -120,7 +120,12 @@ const Container = styled.div`
 const DatePicker: React.FC<ReactDatePickerProps> = ({ ...props }) => {
   return (
     <Container>
-      <ReactDatePicker {...props} disabledKeyboardNavigation locale={ko} />
+      <ReactDatePicker
+        {...props}
+        disabledKeyboardNavigation
+        locale={ko}
+        dateFormat="MM월 dd일"
+      />
     </Container>
   );
 };
