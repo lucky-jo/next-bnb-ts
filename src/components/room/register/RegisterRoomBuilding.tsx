@@ -75,6 +75,9 @@ const isSetUpForGuestOptions = [
 ];
 
 const RegisterRoomBuilding: React.FC = () => {
+  console.log("const RegisterRoomBuilding: React.FC = () => {");
+  const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
   const largeBuildingType = useSelector(
     (state) => state.registerRoom.largeBuildingType
   );

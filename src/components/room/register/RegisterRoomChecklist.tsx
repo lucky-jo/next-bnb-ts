@@ -19,7 +19,9 @@ const Container = styled.div`
 `;
 
 const RegisterRoomChecklist: React.FC = () => {
+  console.log("const RegisterRoomChecklist: React.FC = () => {");
   const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
   // 숙소 유형이 활성화 됬는지
   const isBuildingTypeActived = useMemo(() => {
     const { largeBuildingType, buildingType, roomType, isSetUpForGuest } =

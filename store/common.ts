@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CommonState } from "../types/reduxState";
 
 // 초기 상태
 const initialState: CommonState = {

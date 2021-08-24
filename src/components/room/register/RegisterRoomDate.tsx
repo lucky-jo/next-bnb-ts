@@ -55,6 +55,9 @@ const Container = styled.div`
 `;
 
 const RegisterRoomDate: React.FC = () => {
+  console.log("const RegisterRoomDate: React.FC = () => {");
+  const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
   const startDate = useSelector((state) => state.registerRoom.startDate);
   const endDate = useSelector((state) => state.registerRoom.endDate);
 

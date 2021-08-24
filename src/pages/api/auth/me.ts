@@ -1,6 +1,6 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import jwt from "jsonwebtoken";
-import Data from "../../../lib/data";
+import { User } from "../../../lib/data";
 
 const Controller = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
@@ -12,7 +12,7 @@ const Controller = async (req: NextApiRequest, res: NextApiResponse) => {
       }
       const userId = jwt.verify(accessToken, process.env.JWT_SECRET!);
 
-      const user = Data.user.findEmailOrId({ id: Number(userId) });
+      const user = User.findEmailOrId({ id: Number(userId) });
       if (!user) {
         res.statusCode = 404;
         return res.send("해당유저가 없습니다.");

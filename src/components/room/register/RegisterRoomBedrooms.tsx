@@ -53,6 +53,9 @@ const Container = styled.div`
 `;
 
 const RegisterRoomBedrooms: React.FC = () => {
+  console.log("const RegisterRoomBedrooms: React.FC = () => {");
+  const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
   const maximumGuestCount = useSelector(
     (state) => state.registerRoom.maximumGuestCount
   );

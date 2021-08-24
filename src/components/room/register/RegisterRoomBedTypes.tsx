@@ -8,6 +8,7 @@ import { BedType } from "../../../../types/room";
 import Button from "../../common/Button";
 import Counter from "../../common/Counter";
 import Selector from "../../common/Selector";
+import { useSelector } from "../../../../store";
 
 const Container = styled.li`
   width: 100%;
@@ -51,17 +52,22 @@ interface IProps {
 }
 
 const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
+  console.log(
+    "const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {"
+  );
+  const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
   const [opened, setOpened] = useState(false);
-  //* 선택된 침대 옵션들
+  // 선택된 침대 옵션들
   const initialBedOptions = bedroom.beds.map((bed) => bed.type);
 
-  //* 선택된 침대 옵션들
+  // 선택된 침대 옵션들
   const [activedBedOptions, setActivedBedOptions] =
     useState<BedType[]>(initialBedOptions);
 
   const dispatch = useDispatch();
 
-  //* 침대 개수 총합
+  // 침대 개수 총합
   const totalBedsCount = useMemo(() => {
     let total = 0;
     bedroom.beds.forEach((bed) => {
@@ -70,15 +76,15 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
     return total;
   }, [bedroom]);
 
-  //* 남은 침대 옵션들
+  // 남은 침대 옵션들
   const lastBedOptions = useMemo(() => {
     return bedTypes.filter((bedType) => !activedBedOptions.includes(bedType));
   }, [activedBedOptions, bedroom]);
 
-  //* 침실유형 열고 닫기
+  // 침실유형 열고 닫기
   const toggleOpened = () => setOpened(!opened);
 
-  //* 침실 침대 갯수 변경시
+  // 침실 침대 갯수 변경시
   const onChangeBedTypeCount = (value: number, type: BedType) =>
     dispatch(
       registerRoomActions.setBedTypeCount({
@@ -88,7 +94,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
       })
     );
 
-  //* 침대 종류 텍스트
+  // 침대 종류 텍스트
   const bedsText = useMemo(() => {
     const texts = bedroom.beds.map((bed) => `${bed.type} ${bed.count}개`);
     return texts.join(",");

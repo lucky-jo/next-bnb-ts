@@ -26,6 +26,9 @@ const Container = styled.div`
 `;
 
 const RegisterRoomPrice: React.FC = () => {
+  console.log("const RegisterRoomPrice: React.FC = () => {");
+  const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
   const dispatch = useDispatch();
 
   const price = useSelector((state) => state.registerRoom.price);

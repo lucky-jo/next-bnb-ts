@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { UserType } from "../types/user";
+import { UserState } from "../types/reduxState";
 
 const initialState: UserState = {
-  id: "0",
+  id: 0,
   email: "",
   lastname: "",
   firstname: "",
@@ -15,7 +17,7 @@ const user = createSlice({
   initialState,
   reducers: {
     // 로그인한 유저 변경
-    setLoggedUser(state, action: PayloadAction<IUser>) {
+    setLoggedUser(state, action: PayloadAction<UserType>) {
       state = { ...action.payload, isLogged: true };
       return state;
     },

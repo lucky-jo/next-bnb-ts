@@ -31,6 +31,10 @@ const Container = styled.div`
 `;
 
 const RegisterRoomAmentities: React.FC = () => {
+  console.log("const RegisterRoomAmentities: React.FC = () => {");
+  const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
+
   const dispatch = useDispatch();
   const amentities = useSelector((state) => state.registerRoom.amentities);
 

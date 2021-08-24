@@ -33,6 +33,9 @@ const Container = styled.div`
   }
 `;
 const RegisterBathroom: React.FC = () => {
+  console.log("const RegisterBathroom: React.FC = () => {");
+  const registerRoom = useSelector((state) => state.registerRoom);
+  console.log(registerRoom);
   const bathroomCount = useSelector(
     (state) => state.registerRoom.bathroomCount
   );
