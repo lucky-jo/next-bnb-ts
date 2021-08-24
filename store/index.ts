@@ -9,16 +9,19 @@ import common from "./common";
 import auth from "./auth";
 import { RootState } from "../types/RootState";
 import registerRoom from "./registerRoom";
+import searchRoom from "./searchRoom";
+import room from "./room";
 
 const rootReducer = combineReducers({
   user: user.reducer,
   common: common.reducer,
   auth: auth.reducer,
   registerRoom: registerRoom.reducer,
+  searchRoom: searchRoom.reducer,
+  room: room.reducer,
 });
 
 // 스토어 타입
-
 let initialRootState: RootState;
 
 const reducer = (state: any, action: any) => {
