@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     } = req.query;
     try {
       const rooms = await Room.getList();
-      //* 위치로 필터링 하기
+      // 위치로 필터링 하기
       const filteredRooms = rooms.filter((room) => {
         if (latitude && latitude !== "0" && longitude && longitude !== "0") {
           if (
@@ -59,12 +59,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return true;
       });
 
-      //* 갯수 자르기
+      // 갯수 자르기
       const limitedRooms = filteredRooms.splice(
         0 + (Number(page) - 1) * Number(limit),
         Number(limit)
       );
-      //* host 정보 넣기
+      // host 정보 넣기
       const roomsWithHost = await Promise.all(
         limitedRooms.map(async (room) => {
           const host = await User.findEmailOrId({ id: room.hostId });
@@ -79,7 +79,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "POST") {
-    //? 숙소 등록 하기
+    // 숙소 등록 하기
     try {
       const rooms = await Room.getList();
       if (isEmpty(rooms)) {
