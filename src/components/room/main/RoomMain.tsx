@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import dynamic from "next/dynamic";
 import { format } from "date-fns";
-import MapIcon from "../../../public/static/svg/room/main/map.svg";
+import MapIcon from "../../../../public/static/svg/room/main/map.svg";
 import palette from "../../../styles/palette";
 import { useSelector } from "../../../../store";
 import RoomList from "./RoomList";
