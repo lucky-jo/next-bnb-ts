@@ -3,7 +3,7 @@ import { UserType } from "../types/user";
 import { UserState } from "../types/reduxState";
 
 const initialState: UserState = {
-  id: 0,
+  id: "0",
   email: "",
   lastname: "",
   firstname: "",

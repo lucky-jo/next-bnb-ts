@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { useSelector } from "../../../../store";
 import RoomCard from "./RoomCard";
+import { RoomType } from "../../../../types/room";
 
 const Container = styled.ul<{ showMap: boolean }>`
   display: flex;
@@ -23,7 +24,7 @@ const RoomList: React.FC<IProps> = ({ showMap }) => {
   const rooms = useSelector((state) => state.room.rooms);
   return (
     <Container showMap={showMap}>
-      {rooms.map((room) => (
+      {rooms.map((room: RoomType) => (
         <RoomCard room={room} key={room.id} showMap={showMap} />
       ))}
     </Container>

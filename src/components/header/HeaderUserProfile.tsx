@@ -6,6 +6,7 @@ import { Menu } from "@material-ui/icons";
 import { logoutAPI } from "../../lib/api/auth";
 import { userActions } from "../../../store/user";
 import { useSelector } from "../../../store";
+import Image from "next/image";
 
 const HeaderUserProfile: React.FC = () => {
   // 유저메뉴 열고,닫힘 여부
@@ -38,7 +39,7 @@ const HeaderUserProfile: React.FC = () => {
         onClick={() => setIsUsermenuOpened(!isUsermenuOpened)}
       >
         <Menu />
-        <img
+        <Image
           src={userProfileImage}
           className="header-user-profile-image"
           alt=""

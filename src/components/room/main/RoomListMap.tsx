@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "../../../../store";
+import { RoomType } from "../../../../types/room";
 
 const Container = styled.div`
   width: calc(100% - 840px);
@@ -100,7 +101,7 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
         },
         zoom: 14,
       });
-      rooms.forEach((room) => {
+      rooms.forEach((room: RoomType) => {
         const marker = new google.maps.Marker({
           position: { lat: room.latitude, lng: room.longitude },
           map,

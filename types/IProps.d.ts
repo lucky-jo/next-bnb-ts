@@ -11,7 +11,7 @@
 import react from "react";
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   icon?: JSX.Element;
   isValid?: boolean;
   useValidation?: boolean;

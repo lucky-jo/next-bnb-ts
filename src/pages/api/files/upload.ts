@@ -25,9 +25,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           const stream = createReadStream(files.file.path);
 
           // 파일이름
-          const originalFileName = files.file.name.split(".").shift();
+          const originalFileName = files.file.name!.split(".").shift();
           // 확장자
-          const fileExtension = files.file.name.split(".").pop();
+          const fileExtension = files.file.name!.split(".").pop();
 
           await s3
             .upload({

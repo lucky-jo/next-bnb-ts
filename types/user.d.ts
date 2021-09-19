@@ -1,14 +1,14 @@
 export type UserType = {
-  id: number;
+  id?: string;
   email: string;
   firstname: string;
   lastname: string;
   birthday: string;
-  profileImage: string;
+  profileImage?: string;
 };
 
 export type StoredUserType = {
-  id: number;
+  id: string;
   email: string;
   password: string;
   firstname: string;

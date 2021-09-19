@@ -1,5 +1,5 @@
 interface IUser {
-  id?: string;
+  id?: string | undefined;
   email: string;
   firstname: string;
   lastname: string;

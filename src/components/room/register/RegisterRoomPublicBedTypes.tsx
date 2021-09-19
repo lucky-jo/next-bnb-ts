@@ -54,18 +54,21 @@ const RegisterRoomPublicBedTypes: React.FC = () => {
 
   const totalBedsCount = useMemo(() => {
     let total = 0;
-    publicBedList.forEach((bed) => {
+    publicBedList.forEach((bed: { type: BedType; count: number }) => {
       total += bed.count;
     });
     return total;
   }, [publicBedList]);
 
   const bedsText = useMemo(() => {
-    const texts = publicBedList.map((bed) => `${bed.type} ${bed.count}개`);
+    const texts = publicBedList.map(
+      (bed: { type: BedType; count: number }) => `${bed.type} ${bed.count}개`
+    );
     return texts.join(",");
   }, [publicBedList]);
 
-  const initialBedOptions = () => publicBedList.map((bed) => bed.type);
+  const initialBedOptions = () =>
+    publicBedList.map((bed: { type: BedType; count: number }) => bed.type);
   //* 선택된 침대 옵션들
   const [activedBedOptions, setActivedBedOptions] =
     useState<BedType[]>(initialBedOptions);
@@ -98,7 +101,9 @@ const RegisterRoomPublicBedTypes: React.FC = () => {
               <Counter
                 label={type}
                 value={
-                  publicBedList.find((bed) => bed.type === type)?.count || 0
+                  publicBedList.find(
+                    (bed: { type: BedType; count: number }) => bed.type === type
+                  )?.count || 0
                 }
                 key={type}
                 onChange={(value) =>

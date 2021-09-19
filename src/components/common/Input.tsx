@@ -1,8 +1,8 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { IProps } from "../../../types/IProps";
-import palette from "../../styles/palette";
-import { useSelector } from "../../../store";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { IProps } from '../../../types/IProps'
+import palette from '../../styles/palette'
+import { useSelector } from '../../../store'
 
 const Container = styled.div<InputContainerProps>`
   label {
@@ -15,7 +15,7 @@ const Container = styled.div<InputContainerProps>`
     position: relative;
     width: 100%;
     height: 46px;
-    padding: ${(iconExist) => (iconExist ? "0 44px 0 11px" : "0 11px")};
+    padding: ${(iconExist) => (iconExist ? '0 44px 0 11px' : '0 11px')};
     border: 1px solid ${palette.gray_eb};
     border-radius: 4px;
     font-size: 16px;
@@ -67,19 +67,19 @@ const Container = styled.div<InputContainerProps>`
         border-color: ${palette.dark_cyan};
       }
     `}
-`;
+`
 
 const Input: React.FC<IProps> = ({
-  label = "",
+  label = '',
   icon,
   isValid = false,
   useValidation = true,
-  errorMessage = "",
-  inputErrorMessage = "",
-  inputIconWrapper = "",
+  errorMessage = '',
+  inputErrorMessage = '',
+  inputIconWrapper = '',
   ...props
 }) => {
-  const validateMode = useSelector((state) => state.common.validateMode);
+  const validateMode = useSelector((state) => state.common.validateMode)
   return (
     <Container
       iconExist={!!icon}
@@ -98,7 +98,7 @@ const Input: React.FC<IProps> = ({
         <p className={inputErrorMessage}>{errorMessage}</p>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default React.memo(Input);
+export default React.memo(Input)
