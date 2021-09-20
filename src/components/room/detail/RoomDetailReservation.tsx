@@ -12,6 +12,16 @@ import Counter from '../../common/Counter'
 import Button from '../../common/Button'
 import AuthModal from '../../auth/AuthModal'
 
+type MakeReservationAPIBody = {
+  userId: string
+  checkInDate: string
+  checkOutDate: string
+  adultCount: number
+  childrenCount: number
+  infantsCount: number
+  roomId: string
+}
+
 const Container = styled.div`
   position: sticky;
   top: 128px;
@@ -193,7 +203,7 @@ const RoomDetailReservation: React.FC = () => {
       checkOutRef.current.focus()
     } else {
       try {
-        const body = {
+        const body: MakeReservationAPIBody = {
           roomId: room.id,
           userId,
           checkInDate: startDate!.toISOString(),

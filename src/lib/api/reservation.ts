@@ -1,12 +1,13 @@
 import axios from '.'
 
 type MakeReservationAPIBody = {
-  userId: number
+  userId: string
   checkInDate: string
   checkOutDate: string
   adultCount: number
   childrenCount: number
   infantsCount: number
+  roomId: string
 }
 
 // 숙소 예약하기

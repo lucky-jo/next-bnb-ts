@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import Link from "next/link";
-import { useRouter } from "next/dist/client/router";
-import BackArrowIcon from "../../../../public/static/svg/register/register_room_footer_back_arrow.svg";
-import palette from "../../../styles/palette";
-import Button from "../../common/Button";
-import { registerRoomAPI } from "../../../lib/api/room";
-import { useSelector } from "../../../../store";
+import React from 'react'
+import styled from 'styled-components'
+import Link from 'next/link'
+import { useRouter } from 'next/dist/client/router'
+import BackArrowIcon from '../../../../public/static/svg/register/register_room_footer_back_arrow.svg'
+import palette from '../../../styles/palette'
+import Button from '../../common/Button'
+import { registerRoomAPI } from '../../../lib/api/room'
+import { useSelector } from '../../../../store'
+import { RegisterRoomState } from '../../../../types/reduxState'
 
 const Container = styled.footer`
   position: fixed;
@@ -30,28 +31,28 @@ const Container = styled.footer`
       margin-right: 8px;
     }
   }
-`;
+`
 
 const RegisterRoomSubmitFooter: React.FC = () => {
-  const userId = useSelector((state) => state.user.id);
-  const registerRoom = useSelector((state) => state.registerRoom);
+  const userId = useSelector((state) => state.user.id)
+  const registerRoom = useSelector((state) => state.registerRoom)
 
-  const router = useRouter();
+  const router = useRouter()
 
   // 등록하기 클릭 시
   const onClickregisterRoom = async () => {
-    const registerRoomBody = {
+    const registerRoomBody: RegisterRoomState & { hostId?: string } = {
       ...registerRoom,
       hostId: userId,
-    };
-    try {
-      await registerRoomAPI(registerRoomBody);
-
-      router.push("/");
-    } catch (e) {
-      console.log(e);
     }
-  };
+    try {
+      await registerRoomAPI(registerRoomBody)
+
+      router.push('/')
+    } catch (e) {
+      console.log(e)
+    }
+  }
   return (
     <Container>
       <Link href="/room/register/date">
@@ -64,7 +65,7 @@ const RegisterRoomSubmitFooter: React.FC = () => {
         등록하기
       </Button>
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomSubmitFooter;
+export default RegisterRoomSubmitFooter

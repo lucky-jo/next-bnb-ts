@@ -4,7 +4,7 @@ import isEmpty from 'lodash/isEmpty'
 import { useSelector } from '../../../../store'
 import palette from '../../../styles/palette'
 import RoomDetailPhotos from './RoomDetailPhotos'
-import BedIcon from '../../../public/static/svg/room/detail/bed.svg'
+import BedIcon from '../../../../public/static/svg/room/detail/bed.svg'
 import RoomAmentityIcon from './RoomAmentityIcon'
 import RoomDetailReservation from './RoomDetailReservation'
 
