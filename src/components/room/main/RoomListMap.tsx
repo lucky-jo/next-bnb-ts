@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { useSelector } from "../../../../store";
-import { RoomType } from "../../../../types/room";
+import React, { useEffect, useRef, useState } from 'react'
+import styled from 'styled-components'
+import { useSelector } from '../../../../store'
+import { RoomType } from '../../../../types/room'
 
 const Container = styled.div`
   width: calc(100% - 840px);
@@ -48,48 +47,48 @@ const Container = styled.div`
     left: 40px;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
-    background-image: url("/static/svg/map/google_close.svg");
+    background-image: url('/static/svg/map/google_close.svg');
     background-repeat: no-repeat;
     background-position: center;
   }
-`;
+`
 
 declare global {
   interface Window {
-    google: any;
-    initMap: any;
+    google: any
+    initMap: any
   }
 }
 
 const loadMapScript = () => {
   return new Promise<void>((resolve) => {
-    const script = document.createElement("script");
+    const script = document.createElement('script')
 
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}&callback=initMap`;
-    script.defer = true;
-    document.head.appendChild(script);
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}&callback=initMap`
+    script.defer = true
+    document.head.appendChild(script)
     script.onload = () => {
-      resolve();
-    };
-  });
-};
+      resolve()
+    }
+  })
+}
 
 interface IProps {
-  showMap: boolean;
-  setShowMap: React.Dispatch<React.SetStateAction<boolean>>;
+  showMap: boolean
+  setShowMap: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
-  const rooms = useSelector((state) => state.room.rooms);
-  const mapRef = useRef<HTMLDivElement>(null);
+  const rooms = useSelector((state) => state.room.rooms)
+  const mapRef = useRef<HTMLDivElement>(null)
   const [currentLocation, setCurrentLocation] = useState({
     latitude: 37.5666784,
     longitude: 126.9778436,
-  });
+  })
 
   const loadMap = async () => {
-    await loadMapScript();
-  };
+    await loadMapScript()
+  }
 
   window.initMap = () => {
     //* 지도 불러오기
@@ -100,15 +99,15 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
           lng: currentLocation.longitude,
         },
         zoom: 14,
-      });
+      })
       rooms.forEach((room: RoomType) => {
         const marker = new google.maps.Marker({
           position: { lat: room.latitude, lng: room.longitude },
           map,
-        });
-      });
+        })
+      })
     }
-  };
+  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -116,17 +115,17 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
         setCurrentLocation({
           latitude: coords.latitude,
           longitude: coords.longitude,
-        });
+        })
       },
       () => {
-        console.log("위치 받기 에러");
+        console.log('위치 받기 에러')
       }
-    );
-  }, []);
+    )
+  }, [])
 
   useEffect(() => {
-    loadMap();
-  }, [rooms, currentLocation]);
+    loadMap()
+  }, [rooms, currentLocation])
 
   return (
     <>
@@ -139,7 +138,7 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
         />
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default RoomListMap;
+export default RoomListMap
