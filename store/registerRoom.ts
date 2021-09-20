@@ -118,7 +118,6 @@ const registerRoom = createSlice({
     },
     // 최대 침대 갯수 변경하기
     setBedCount(state, action: PayloadAction<number>) {
-      console.log('123123')
       state.bedCount = action.payload
       return state
     },

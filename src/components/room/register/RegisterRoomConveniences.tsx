@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import RegisterRoomFooter from "./RegisterRoomFooter";
-import palette from "../../../styles/palette";
-import { useSelector } from "../../../../store";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import CheckboxGroup from "../../common/CheckboxGroup";
-import { convinienceList } from "../../../lib/staticData";
+import React from 'react'
+import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import RegisterRoomFooter from './RegisterRoomFooter'
+import palette from '../../../styles/palette'
+import { useSelector } from '../../../../store'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import CheckboxGroup from '../../common/CheckboxGroup'
+import { convinienceList } from '../../../lib/staticData'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -26,20 +26,18 @@ const Container = styled.div`
     max-width: 400px;
     margin-bottom: 24px;
   }
-`;
+`
 
 const RegisterConveniences: React.FC = () => {
-  console.log("const RegisterConveniences: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
+  const registerRoom = useSelector((state) => state.registerRoom)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const conveniences = useSelector((state) => state.registerRoom.conveniences);
+  const conveniences = useSelector((state) => state.registerRoom.conveniences)
 
   const onChangeConviniences = (selected: string[]) => {
-    dispatch(registerRoomActions.setConveniences(selected));
-  };
+    dispatch(registerRoomActions.setConveniences(selected))
+  }
 
   return (
     <Container>
@@ -60,7 +58,7 @@ const RegisterConveniences: React.FC = () => {
         nextHref="/room/register/photo"
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterConveniences;
+export default RegisterConveniences

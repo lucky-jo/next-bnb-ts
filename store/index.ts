@@ -27,7 +27,6 @@ let initialRootState: RootState
 
 const reducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {
-    console.log('if (action.type === HYDRATE) {')
     if (state === initialRootState) {
       return {
         ...state,

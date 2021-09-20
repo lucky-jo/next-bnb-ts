@@ -11,7 +11,6 @@ const Container = async (req: NextApiRequest, res: NextApiResponse) => {
         res.statusCode = 400
         return res.send('필수 데이터가 없습니다.')
       }
-      console.log('email', email, firstname, lastname, password, birthday)
       const hashedPassword = bcrypt.hashSync(password, 8)
       const users = getList()
       const result = existEmail(email, users)
@@ -30,7 +29,6 @@ const Container = async (req: NextApiRequest, res: NextApiResponse) => {
         String(newUser.id),
         process.env.NEXT_PUBLIC_JWT_SECRET!
       )
-      console.log('token: ' + token)
       res.setHeader('Set-Cookie', `access_token=${token}; path=/; Httponly`)
       // res.setHeader(
       //   "Set-Cookie",

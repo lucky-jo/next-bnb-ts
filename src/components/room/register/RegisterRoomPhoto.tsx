@@ -1,15 +1,15 @@
-import React from "react";
-import styled from "styled-components";
-import palette from "../../../styles/palette";
-import isEmpty from "lodash/isEmpty";
-import { useSelector } from "../../../../store";
-import Button from "../../../components/common/Button";
-import UploadIcon from "../../../../public/static/svg/register/upload.svg";
-import { uploadFileAPI } from "../../../lib/api/files";
-import { useDispatch } from "react-redux";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import RegisterRoomPhotoCardList from "./RegisterRoomPhotoCardList";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import React from 'react'
+import styled from 'styled-components'
+import palette from '../../../styles/palette'
+import isEmpty from 'lodash/isEmpty'
+import { useSelector } from '../../../../store'
+import Button from '../../../components/common/Button'
+import UploadIcon from '../../../../public/static/svg/register/upload.svg'
+import { uploadFileAPI } from '../../../lib/api/files'
+import { useDispatch } from 'react-redux'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import RegisterRoomPhotoCardList from './RegisterRoomPhotoCardList'
+import RegisterRoomFooter from './RegisterRoomFooter'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -51,32 +51,31 @@ const Container = styled.div`
       max-height: 100%;
     }
   }
-`;
+`
 
 const RegisterRoomPhoto: React.FC = () => {
-  const photos = useSelector((state) => state.registerRoom.photos);
+  const photos = useSelector((state) => state.registerRoom.photos)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   // 이미지 업로드 하기
   const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
+    const { files } = event.target
     if (files && files.length > 0) {
-      const file = files[0];
-      const formdata = new FormData();
-      formdata.append("file", file);
+      const file = files[0]
+      const formdata = new FormData()
+      formdata.append('file', file)
       try {
-        const { data } = await uploadFileAPI(formdata);
+        const { data } = await uploadFileAPI(formdata)
 
         if (data) {
-          console.log("data", data);
-          dispatch(registerRoomActions.setPhotos([...photos, data]));
+          dispatch(registerRoomActions.setPhotos([...photos, data]))
         }
       } catch (error) {
-        console.log(error.message);
+        console.log(error.message)
       }
     }
-  };
+  }
 
   return (
     <Container>
@@ -100,7 +99,7 @@ const RegisterRoomPhoto: React.FC = () => {
         nextHref="/room/register/description"
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomPhoto;
+export default RegisterRoomPhoto

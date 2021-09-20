@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
-import palette from "../../../styles/palette";
+import palette from '../../../styles/palette'
 
-import DatePicker from "../../../components/common/DatePicker";
-import { useDispatch } from "react-redux";
-import { useSelector } from "../../../../store";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import DatePicker from '../../../components/common/DatePicker'
+import { useDispatch } from 'react-redux'
+import { useSelector } from '../../../../store'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import RegisterRoomFooter from './RegisterRoomFooter'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -52,30 +52,26 @@ const Container = styled.div`
       margin-right: 20px;
     }
   }
-`;
+`
 
 const RegisterRoomDate: React.FC = () => {
-  console.log("const RegisterRoomDate: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
-  const startDate = useSelector((state) => state.registerRoom.startDate);
-  const endDate = useSelector((state) => state.registerRoom.endDate);
+  const registerRoom = useSelector((state) => state.registerRoom)
+  const startDate = useSelector((state) => state.registerRoom.startDate)
+  const endDate = useSelector((state) => state.registerRoom.endDate)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const dateStartDate = startDate ? new Date(startDate) : null;
-  const dateEndDate = endDate ? new Date(endDate) : null;
+  const dateStartDate = startDate ? new Date(startDate) : null
+  const dateEndDate = endDate ? new Date(endDate) : null
 
   // 예약 시작 날짜 변경시
   const onChangeStartDate = (date: Date | null) => {
-    dispatch(
-      registerRoomActions.setStartDate(date ? date.toISOString() : null)
-    );
-  };
+    dispatch(registerRoomActions.setStartDate(date ? date.toISOString() : null))
+  }
   // 예약 종료 날짜 변경시
   const onChangeEndDate = (date: Date | null) => {
-    dispatch(registerRoomActions.setEndDate(date ? date.toISOString() : null));
-  };
+    dispatch(registerRoomActions.setEndDate(date ? date.toISOString() : null))
+  }
 
   return (
     <Container>
@@ -117,7 +113,7 @@ const RegisterRoomDate: React.FC = () => {
         nextHref="/room/register/checklist"
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomDate;
+export default RegisterRoomDate

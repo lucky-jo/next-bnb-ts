@@ -33,9 +33,7 @@ const Container = styled.div`
 `
 
 const RegisterRoomDescription: React.FC = () => {
-  console.log('const RegisterRoomDescription: React.FC = () => {')
   const registerRoom = useSelector((state) => state.registerRoom)
-  console.log(registerRoom)
   const dispatch = useDispatch()
 
   const description = useSelector((state) => state.registerRoom.description)

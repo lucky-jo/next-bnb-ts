@@ -1,15 +1,15 @@
-import React from "react";
-import styled from "styled-components";
-import palette from "../../../styles/palette";
-import { useSelector } from "../../../../store";
-import { useDispatch } from "react-redux";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import Counter from "../../common/Counter";
-import { getNumber } from "../../../lib/utils";
-import Selector from "../../common/Selector";
-import { bedroomCountList } from "../../../lib/staticData";
-import RegisterRoomBedList from "./RegisterRoomBedList";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import React from 'react'
+import styled from 'styled-components'
+import palette from '../../../styles/palette'
+import { useSelector } from '../../../../store'
+import { useDispatch } from 'react-redux'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import Counter from '../../common/Counter'
+import { getNumber } from '../../../lib/utils'
+import Selector from '../../common/Selector'
+import { bedroomCountList } from '../../../lib/staticData'
+import RegisterRoomBedList from './RegisterRoomBedList'
+import RegisterRoomFooter from './RegisterRoomFooter'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -50,37 +50,34 @@ const Container = styled.div`
     max-width: 400px;
     word-break: keep-all;
   }
-`;
+`
 
 const RegisterRoomBedrooms: React.FC = () => {
-  console.log("const RegisterRoomBedrooms: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
+  const registerRoom = useSelector((state) => state.registerRoom)
   const maximumGuestCount = useSelector(
     (state) => state.registerRoom.maximumGuestCount
-  );
-  const bedroomCount = useSelector((state) => state.registerRoom.bedroomCount);
-  const bedCount = useSelector((state) => state.registerRoom.bedCount);
+  )
+  const bedroomCount = useSelector((state) => state.registerRoom.bedroomCount)
+  const bedCount = useSelector((state) => state.registerRoom.bedCount)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   // 최대 숙박 인원 변경
   const onChangeMaximumGueseCount = (value: number) => {
-    dispatch(registerRoomActions.setMaximumGuestCount(value));
-  };
+    dispatch(registerRoomActions.setMaximumGuestCount(value))
+  }
   // 침실 개수 변경
   const onChangeBedroomCount = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    console.log("event", getNumber(event.target.value));
     return dispatch(
       registerRoomActions.setBedroomCount(getNumber(event.target.value) || 0)
-    );
-  };
+    )
+  }
   // 침실 개수 변경
   const onChangeBedCount = (value: number) => {
-    dispatch(registerRoomActions.setBedCount(value));
-  };
+    dispatch(registerRoomActions.setBedCount(value))
+  }
   return (
     <Container>
       <h2>숙소에 얼마나 많은 인원이 숙박할 수 있나요?</h2>
@@ -121,7 +118,7 @@ const RegisterRoomBedrooms: React.FC = () => {
         isValid={!!bedroomCount}
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomBedrooms;
+export default RegisterRoomBedrooms

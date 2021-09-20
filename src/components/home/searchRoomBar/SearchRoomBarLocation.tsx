@@ -72,7 +72,6 @@ const Container = styled.div`
 
 const SearchRoomBarLocation: React.FC = () => {
   const searchRoom = useSelector((state) => state.searchRoom)
-  console.log(searchRoom)
 
   const location = useSelector((state) => state.searchRoom.location)
   const [popupOpened, setPopupOpened] = useState(false)

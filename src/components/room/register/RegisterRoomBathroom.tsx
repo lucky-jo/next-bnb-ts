@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import React from 'react'
+import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
-import RegisterRoomFooter from "./RegisterRoomFooter";
-import palette from "../../../styles/palette";
-import { useSelector } from "../../../../store";
-import Counter from "../../common/Counter";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import RadioGroup from "../../common/RadioGroup";
+import RegisterRoomFooter from './RegisterRoomFooter'
+import palette from '../../../styles/palette'
+import { useSelector } from '../../../../store'
+import Counter from '../../common/Counter'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import RadioGroup from '../../common/RadioGroup'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -31,18 +31,14 @@ const Container = styled.div`
     width: 320px;
     margin-bottom: 32px;
   }
-`;
+`
 const RegisterBathroom: React.FC = () => {
-  console.log("const RegisterBathroom: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
-  const bathroomCount = useSelector(
-    (state) => state.registerRoom.bathroomCount
-  );
+  const registerRoom = useSelector((state) => state.registerRoom)
+  const bathroomCount = useSelector((state) => state.registerRoom.bathroomCount)
 
-  const bathroomType = useSelector((state) => state.registerRoom.bathroomType);
+  const bathroomType = useSelector((state) => state.registerRoom.bathroomType)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   return (
     <Container>
@@ -69,8 +65,8 @@ const RegisterBathroom: React.FC = () => {
           dispatch(registerRoomActions.setBathroomType(value))
         }
         options={[
-          { value: "private", label: "예" },
-          { value: "public", label: "아니요, 공용입니다." },
+          { value: 'private', label: '예' },
+          { value: 'public', label: '아니요, 공용입니다.' },
         ]}
       />
       <RegisterRoomFooter
@@ -79,7 +75,7 @@ const RegisterBathroom: React.FC = () => {
         isValid={bathroomCount > 0 && !!bathroomType}
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterBathroom;
+export default RegisterBathroom

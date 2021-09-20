@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
-import isEmpty from "lodash/isEmpty";
-import styled from "styled-components";
-import { useSelector } from "../../../../store";
-import RegisterRoomCheckStep from "./RegisterRoomCheckStep";
-import RegisterRoomSubmitFooter from "./RegisterRoomSubmitFooter";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import React, { useMemo } from 'react'
+import isEmpty from 'lodash/isEmpty'
+import styled from 'styled-components'
+import { useSelector } from '../../../../store'
+import RegisterRoomCheckStep from './RegisterRoomCheckStep'
+import RegisterRoomSubmitFooter from './RegisterRoomSubmitFooter'
+import RegisterRoomFooter from './RegisterRoomFooter'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -16,26 +16,24 @@ const Container = styled.div`
     display: inline-flex;
     flex-direction: column;
   }
-`;
+`
 
 const RegisterRoomChecklist: React.FC = () => {
-  console.log("const RegisterRoomChecklist: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
+  const registerRoom = useSelector((state) => state.registerRoom)
   // 숙소 유형이 활성화 됬는지
   const isBuildingTypeActived = useMemo(() => {
     const { largeBuildingType, buildingType, roomType, isSetUpForGuest } =
-      registerRoom;
+      registerRoom
     if (
       !largeBuildingType ||
       !buildingType ||
       !roomType ||
       isSetUpForGuest === null
     ) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 숙소 종류가 활성화 됬는지
   const isRoomTypeActived = useMemo(() => {
@@ -45,26 +43,26 @@ const RegisterRoomChecklist: React.FC = () => {
       bedCount,
       bedList,
       publicBedList,
-    } = registerRoom;
+    } = registerRoom
     if (
       !isBuildingTypeActived ||
       !maximumGuestCount ||
       !bedroomCount ||
       !bedCount
     ) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 욕실 항목이 활성화 됬는지
   const isBathroomActived = useMemo(() => {
-    const { bathroomCount, bathroomType } = registerRoom;
+    const { bathroomCount, bathroomType } = registerRoom
     if (!isRoomTypeActived || !bathroomCount || bathroomType === null) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 위치 항목이 활성화 됬는지
   const isLocationActived = useMemo(() => {
@@ -77,7 +75,7 @@ const RegisterRoomChecklist: React.FC = () => {
       streetAddress,
       detailAddress,
       postcode,
-    } = registerRoom;
+    } = registerRoom
     if (
       !isBathroomActived ||
       !latitude ||
@@ -88,111 +86,111 @@ const RegisterRoomChecklist: React.FC = () => {
       !streetAddress ||
       !postcode
     ) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 편의시설이 활성화 됬는지
   const isAmentitiesActived = useMemo(() => {
-    const { amentities } = registerRoom;
+    const { amentities } = registerRoom
 
     if (!isLocationActived) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 공용 공간이 활성화 됬는지
   const isConviniencesActived = useMemo(() => {
     if (!isAmentitiesActived) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 사진 항목이 다 채워져 있는지
   const isPhotoActived = useMemo(() => {
-    const { photos } = registerRoom;
+    const { photos } = registerRoom
     if (!isConviniencesActived || isEmpty(photos)) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 숙소 설명이 다 채워져 있는지
   const isDescriptionActived = useMemo(() => {
-    const { description } = registerRoom;
+    const { description } = registerRoom
     if (!isPhotoActived || !description) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 숙소 제목이 다 채워져 있는지
   const isTitleActived = useMemo(() => {
-    const { title } = registerRoom;
+    const { title } = registerRoom
     if (!isDescriptionActived || !title) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 숙소 금액이 채워져 있는지
   const isPriceActived = useMemo(() => {
-    const { price } = registerRoom;
+    const { price } = registerRoom
     if (!isTitleActived || !price) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 예약 날짜가 채워져 있는지
   const isDateActived = useMemo(() => {
-    const { startDate, endDate } = registerRoom;
+    const { startDate, endDate } = registerRoom
     if (!isPriceActived || !startDate || !endDate) {
-      return false;
+      return false
     }
-    return true;
-  }, []);
+    return true
+  }, [])
 
   // 진행중인 단계
   const stepInProgress = useMemo(() => {
     if (!isBuildingTypeActived) {
-      return "building";
+      return 'building'
     }
     if (!isRoomTypeActived) {
-      return "bedrooms";
+      return 'bedrooms'
     }
     if (!isBathroomActived) {
-      return "bathroom";
+      return 'bathroom'
     }
     if (!isLocationActived) {
-      return "location";
+      return 'location'
     }
     if (!isAmentitiesActived) {
-      return "amentities";
+      return 'amentities'
     }
     if (!isConviniencesActived) {
-      return "conviniences";
+      return 'conviniences'
     }
     if (!isPhotoActived) {
-      return "photo";
+      return 'photo'
     }
     if (!isDescriptionActived) {
-      return "description";
+      return 'description'
     }
     if (!isTitleActived) {
-      return "title";
+      return 'title'
     }
     if (!isPriceActived) {
-      return "price";
+      return 'price'
     }
     if (!isDateActived) {
-      return "date";
+      return 'date'
     }
-    return "";
-  }, []);
+    return ''
+  }, [])
   return (
     <Container>
       <p className="register-room-checklist-info">
@@ -203,67 +201,67 @@ const RegisterRoomChecklist: React.FC = () => {
           step="숙소 유형"
           href="/room/register/building"
           disabled={!isBuildingTypeActived}
-          inProgress={stepInProgress === "building"}
+          inProgress={stepInProgress === 'building'}
         />
         <RegisterRoomCheckStep
           step="숙소 종류"
           href="/room/register/bedrooms"
           disabled={!isRoomTypeActived}
-          inProgress={stepInProgress === "bedrooms"}
+          inProgress={stepInProgress === 'bedrooms'}
         />
         <RegisterRoomCheckStep
           step="욕실"
           href="/room/register/bathroom"
           disabled={!isBathroomActived}
-          inProgress={stepInProgress === "bathroom"}
+          inProgress={stepInProgress === 'bathroom'}
         />
         <RegisterRoomCheckStep
           step="위치"
           href="/room/register/location"
           disabled={!isLocationActived}
-          inProgress={stepInProgress === "location"}
+          inProgress={stepInProgress === 'location'}
         />
         <RegisterRoomCheckStep
           step="편의 시설"
           href="/room/register/amentities"
           disabled={!isAmentitiesActived}
-          inProgress={stepInProgress === "amentities"}
+          inProgress={stepInProgress === 'amentities'}
         />
         <RegisterRoomCheckStep
           step="공용 공간"
           href="/room/register/conviniences"
           disabled={!isConviniencesActived}
-          inProgress={stepInProgress === "conviniences"}
+          inProgress={stepInProgress === 'conviniences'}
         />
         <RegisterRoomCheckStep
           step="사진"
           href="/room/register/photo"
           disabled={!isPhotoActived}
-          inProgress={stepInProgress === "photo"}
+          inProgress={stepInProgress === 'photo'}
         />
         <RegisterRoomCheckStep
           step="설명"
           href="/room/register/description"
           disabled={!isDescriptionActived}
-          inProgress={stepInProgress === "description"}
+          inProgress={stepInProgress === 'description'}
         />
         <RegisterRoomCheckStep
           step="제목"
           href="/room/register/title"
           disabled={!isTitleActived}
-          inProgress={stepInProgress === "title"}
+          inProgress={stepInProgress === 'title'}
         />
         <RegisterRoomCheckStep
           step="요금"
           href="/room/register/price"
           disabled={!isPriceActived}
-          inProgress={stepInProgress === "price"}
+          inProgress={stepInProgress === 'price'}
         />
         <RegisterRoomCheckStep
           step="예약 날짜"
           href="/room/register/date"
           disabled={!isDateActived}
-          inProgress={stepInProgress === "date"}
+          inProgress={stepInProgress === 'date'}
         />
       </ul>
       {isDateActived ? (
@@ -275,7 +273,7 @@ const RegisterRoomChecklist: React.FC = () => {
         />
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomChecklist;
+export default RegisterRoomChecklist

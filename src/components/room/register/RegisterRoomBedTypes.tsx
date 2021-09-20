@@ -1,14 +1,14 @@
-import React, { useMemo, useState } from "react";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import { bedTypes } from "../../../lib/staticData";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import palette from "../../../styles/palette";
-import { BedType } from "../../../../types/room";
-import Button from "../../common/Button";
-import Counter from "../../common/Counter";
-import Selector from "../../common/Selector";
-import { useSelector } from "../../../../store";
+import React, { useMemo, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import { bedTypes } from '../../../lib/staticData'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import palette from '../../../styles/palette'
+import { BedType } from '../../../../types/room'
+import Button from '../../common/Button'
+import Counter from '../../common/Counter'
+import Selector from '../../common/Selector'
+import { useSelector } from '../../../../store'
 
 const Container = styled.li`
   width: 100%;
@@ -45,44 +45,40 @@ const Container = styled.li`
     max-width: 240px;
     word-break: keep-all;
   }
-`;
+`
 
 interface IProps {
-  bedroom: { id: number; beds: { type: BedType; count: number }[] };
+  bedroom: { id: number; beds: { type: BedType; count: number }[] }
 }
 
 const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
-  console.log(
-    "const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {"
-  );
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
-  const [opened, setOpened] = useState(false);
+  const registerRoom = useSelector((state) => state.registerRoom)
+  const [opened, setOpened] = useState(false)
   // 선택된 침대 옵션들
-  const initialBedOptions = bedroom.beds.map((bed) => bed.type);
+  const initialBedOptions = bedroom.beds.map((bed) => bed.type)
 
   // 선택된 침대 옵션들
   const [activedBedOptions, setActivedBedOptions] =
-    useState<BedType[]>(initialBedOptions);
+    useState<BedType[]>(initialBedOptions)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   // 침대 개수 총합
   const totalBedsCount = useMemo(() => {
-    let total = 0;
+    let total = 0
     bedroom.beds.forEach((bed) => {
-      total += bed.count;
-    });
-    return total;
-  }, [bedroom]);
+      total += bed.count
+    })
+    return total
+  }, [bedroom])
 
   // 남은 침대 옵션들
   const lastBedOptions = useMemo(() => {
-    return bedTypes.filter((bedType) => !activedBedOptions.includes(bedType));
-  }, [activedBedOptions, bedroom]);
+    return bedTypes.filter((bedType) => !activedBedOptions.includes(bedType))
+  }, [activedBedOptions, bedroom])
 
   // 침실유형 열고 닫기
-  const toggleOpened = () => setOpened(!opened);
+  const toggleOpened = () => setOpened(!opened)
 
   // 침실 침대 갯수 변경시
   const onChangeBedTypeCount = (value: number, type: BedType) =>
@@ -92,13 +88,13 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
         type,
         count: value,
       })
-    );
+    )
 
   // 침대 종류 텍스트
   const bedsText = useMemo(() => {
-    const texts = bedroom.beds.map((bed) => `${bed.type} ${bed.count}개`);
-    return texts.join(",");
-  }, [bedroom]);
+    const texts = bedroom.beds.map((bed) => `${bed.type} ${bed.count}개`)
+    return texts.join(',')
+  }, [bedroom])
 
   return (
     <Container>
@@ -111,9 +107,9 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
           </p>
         </div>
         <Button onClick={toggleOpened} width="161px">
-          {opened && "완료"}
+          {opened && '완료'}
           {!opened &&
-            (totalBedsCount === 0 ? "침대 추가하기" : "침대 수정하기")}
+            (totalBedsCount === 0 ? '침대 추가하기' : '침대 수정하기')}
         </Button>
       </div>
 
@@ -128,7 +124,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
                 }
                 key={type}
                 onChange={(value) => {
-                  onChangeBedTypeCount(value, type);
+                  onChangeBedTypeCount(value, type)
                 }}
               />
             </div>
@@ -138,7 +134,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
             options={lastBedOptions}
             defaultValue="다른 침대 추가"
             value="다른 침대 추가"
-            disabledOptions={["다른 침대 추가"]}
+            disabledOptions={['다른 침대 추가']}
             useValidation={false}
             onChange={(e) =>
               setActivedBedOptions([
@@ -150,7 +146,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
         </div>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomBedTypes;
+export default RegisterRoomBedTypes

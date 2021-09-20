@@ -1,12 +1,12 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import palette from "../../../styles/palette";
-import CheckboxGroup from "../../common/CheckboxGroup";
-import RegisterRoomFooter from "./RegisterRoomFooter";
-import { useSelector } from "../../../../store";
-import { amentityList } from "../../../lib/staticData";
-import { registerRoomActions } from "../../../../store/registerRoom";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import palette from '../../../styles/palette'
+import CheckboxGroup from '../../common/CheckboxGroup'
+import RegisterRoomFooter from './RegisterRoomFooter'
+import { useSelector } from '../../../../store'
+import { amentityList } from '../../../lib/staticData'
+import { registerRoomActions } from '../../../../store/registerRoom'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -28,19 +28,17 @@ const Container = styled.div`
   .register-room-amentities-checkbox-group-wrapper {
     padding-top: 20px;
   }
-`;
+`
 
 const RegisterRoomAmentities: React.FC = () => {
-  console.log("const RegisterRoomAmentities: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
+  const registerRoom = useSelector((state) => state.registerRoom)
 
-  const dispatch = useDispatch();
-  const amentities = useSelector((state) => state.registerRoom.amentities);
+  const dispatch = useDispatch()
+  const amentities = useSelector((state) => state.registerRoom.amentities)
 
   const onChaneAmentities = (selected: string[]) => {
-    dispatch(registerRoomActions.setAmentities(selected));
-  };
+    dispatch(registerRoomActions.setAmentities(selected))
+  }
 
   return (
     <Container>
@@ -62,7 +60,7 @@ const RegisterRoomAmentities: React.FC = () => {
         nextHref="/room/register/conveniences"
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomAmentities;
+export default RegisterRoomAmentities

@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import React from 'react'
+import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
-import RegisterRoomFooter from "./RegisterRoomFooter";
-import palette from "../../../styles/palette";
-import { useSelector } from "../../../../store";
-import Input from "../../common/Input";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import { makeMoneyString } from "../../../lib/utils";
+import RegisterRoomFooter from './RegisterRoomFooter'
+import palette from '../../../styles/palette'
+import { useSelector } from '../../../../store'
+import Input from '../../common/Input'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import { makeMoneyString } from '../../../lib/utils'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -23,30 +23,28 @@ const Container = styled.div`
     color: ${palette.gray_76};
     margin-bottom: 6px;
   }
-`;
+`
 
 const RegisterRoomPrice: React.FC = () => {
-  console.log("const RegisterRoomPrice: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
-  const dispatch = useDispatch();
+  const registerRoom = useSelector((state) => state.registerRoom)
+  const dispatch = useDispatch()
 
-  const price = useSelector((state) => state.registerRoom.price);
+  const price = useSelector((state) => state.registerRoom.price)
 
   // 금액 변경시
   const onChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.target.value;
+    const input = event.target.value
 
-    const numberPrice = Number(input.replace(/,/g, ""));
+    const numberPrice = Number(input.replace(/,/g, ''))
     // 인풋 값이 비워지면 price를 0으로 변경
     if (!numberPrice || numberPrice === 0) {
-      dispatch(registerRoomActions.setPrice(0));
+      dispatch(registerRoomActions.setPrice(0))
     }
 
     if (numberPrice !== 0) {
-      dispatch(registerRoomActions.setPrice(numberPrice));
+      dispatch(registerRoomActions.setPrice(numberPrice))
     }
-  };
+  }
 
   return (
     <Container>
@@ -62,7 +60,7 @@ const RegisterRoomPrice: React.FC = () => {
         nextHref="/room/register/date"
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomPrice;
+export default RegisterRoomPrice
