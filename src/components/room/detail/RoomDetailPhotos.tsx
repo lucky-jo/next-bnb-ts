@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { useSelector } from "../../../store";
+import React from 'react'
+import styled from 'styled-components'
+import { useSelector } from '../../../../store'
 
 const Container = styled.div`
   position: relative;
@@ -77,13 +77,13 @@ const Container = styled.div`
       }
     }
   }
-`;
+`
 
 const RoomDetailPhotos: React.FC = () => {
-  const roomTitle = useSelector((state) => state.room.detail?.title);
-  const photos = useSelector((state) => state.room.detail?.photos);
+  const roomTitle = useSelector((state) => state.room.detail?.title)
+  const photos = useSelector((state) => state.room.detail?.photos)
   if (!photos) {
-    return null;
+    return null
   }
   if (photos.length === 1) {
     return (
@@ -92,7 +92,7 @@ const RoomDetailPhotos: React.FC = () => {
           <img src={photos[0]} alt={roomTitle} />
         </div>
       </Container>
-    );
+    )
   }
   if (photos.length < 4) {
     return (
@@ -107,7 +107,7 @@ const RoomDetailPhotos: React.FC = () => {
           </div>
         </div>
       </Container>
-    );
+    )
   }
   if (photos.length > 4) {
     return (
@@ -124,9 +124,9 @@ const RoomDetailPhotos: React.FC = () => {
           </div>
         </div>
       </Container>
-    );
+    )
   }
-  return <Container>hello world</Container>;
-};
+  return <Container>hello world</Container>
+}
 
-export default RoomDetailPhotos;
+export default RoomDetailPhotos

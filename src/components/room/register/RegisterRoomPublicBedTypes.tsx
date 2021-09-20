@@ -1,15 +1,15 @@
-import React, { useMemo, useState } from "react";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import { bedTypes } from "../../../lib/staticData";
-import { useSelector } from "../../../../store";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import palette from "../../../styles/palette";
-import { BedType } from "../../../../types/room";
-import Button from "../../common/Button";
-import Counter from "../../common/Counter";
+import React, { useMemo, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import { bedTypes } from '../../../lib/staticData'
+import { useSelector } from '../../../../store'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import palette from '../../../styles/palette'
+import { BedType } from '../../../../types/room'
+import Button from '../../common/Button'
+import Counter from '../../common/Counter'
 
-import Selector from "../../common/Selector";
+import Selector from '../../common/Selector'
 
 const Container = styled.li`
   width: 100%;
@@ -42,41 +42,39 @@ const Container = styled.li`
     width: 290px;
     margin-bottom: 18px;
   }
-`;
+`
 
 const RegisterRoomPublicBedTypes: React.FC = () => {
-  const [opened, setOpened] = useState(false);
-  const publicBedList = useSelector(
-    (state) => state.registerRoom.publicBedList
-  );
+  const [opened, setOpened] = useState(false)
+  const publicBedList = useSelector((state) => state.registerRoom.publicBedList)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const totalBedsCount = useMemo(() => {
-    let total = 0;
+    let total = 0
     publicBedList.forEach((bed: { type: BedType; count: number }) => {
-      total += bed.count;
-    });
-    return total;
-  }, [publicBedList]);
+      total += bed.count
+    })
+    return total
+  }, [publicBedList])
 
   const bedsText = useMemo(() => {
     const texts = publicBedList.map(
       (bed: { type: BedType; count: number }) => `${bed.type} ${bed.count}개`
-    );
-    return texts.join(",");
-  }, [publicBedList]);
+    )
+    return texts.join(',')
+  }, [publicBedList])
 
   const initialBedOptions = () =>
-    publicBedList.map((bed: { type: BedType; count: number }) => bed.type);
-  //* 선택된 침대 옵션들
+    publicBedList.map((bed: { type: BedType; count: number }) => bed.type)
+  // 선택된 침대 옵션들
   const [activedBedOptions, setActivedBedOptions] =
-    useState<BedType[]>(initialBedOptions);
+    useState<BedType[]>(initialBedOptions)
 
-  //* 남은 침대 옵션들
+  // 남은 침대 옵션들
   const lastBedOptions = useMemo(() => {
-    return bedTypes.filter((bedType) => !activedBedOptions.includes(bedType));
-  }, [activedBedOptions, publicBedList]);
+    return bedTypes.filter((bedType) => !activedBedOptions.includes(bedType))
+  }, [activedBedOptions, publicBedList])
 
   return (
     <Container>
@@ -89,9 +87,9 @@ const RegisterRoomPublicBedTypes: React.FC = () => {
           </p>
         </div>
         <Button onClick={() => setOpened(!opened)} width="161px">
-          {opened && "완료"}
+          {opened && '완료'}
           {!opened &&
-            (totalBedsCount === 0 ? "침대 추가하기" : "침대 수정하기")}
+            (totalBedsCount === 0 ? '침대 추가하기' : '침대 수정하기')}
         </Button>
       </div>
       {opened && (
@@ -120,7 +118,7 @@ const RegisterRoomPublicBedTypes: React.FC = () => {
           <Selector
             type="register"
             options={lastBedOptions}
-            disabledOptions={["다른 침대 추가"]}
+            disabledOptions={['다른 침대 추가']}
             value="다른 침대 추가"
             useValidation={false}
             onChange={(e) =>
@@ -133,7 +131,7 @@ const RegisterRoomPublicBedTypes: React.FC = () => {
         </div>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomPublicBedTypes;
+export default RegisterRoomPublicBedTypes

@@ -1,11 +1,11 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import { useSelector } from "../../../../store";
-import { registerRoomActions } from "../../../../store/registerRoom";
-import palette from "../../../styles/palette";
-import Textarea from "../../common/Textarea";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import { useSelector } from '../../../../store'
+import { registerRoomActions } from '../../../../store/registerRoom'
+import palette from '../../../styles/palette'
+import Textarea from '../../common/Textarea'
+import RegisterRoomFooter from './RegisterRoomFooter'
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -30,19 +30,19 @@ const Container = styled.div`
     font-size: 14px;
     margin-bottom: 16px;
   }
-`;
+`
 
 const RegisterRoomDescription: React.FC = () => {
-  console.log("const RegisterRoomDescription: React.FC = () => {");
-  const registerRoom = useSelector((state) => state.registerRoom);
-  console.log(registerRoom);
-  const dispatch = useDispatch();
+  console.log('const RegisterRoomDescription: React.FC = () => {')
+  const registerRoom = useSelector((state) => state.registerRoom)
+  console.log(registerRoom)
+  const dispatch = useDispatch()
 
-  const description = useSelector((state) => state.registerRoom.description);
+  const description = useSelector((state) => state.registerRoom.description)
 
-  //* 숙소 설명 변경시
+  // 숙소 설명 변경시
   const onChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
-    dispatch(registerRoomActions.setDescription(e.target.value));
+    dispatch(registerRoomActions.setDescription(e.target.value))
 
   return (
     <Container>
@@ -60,7 +60,7 @@ const RegisterRoomDescription: React.FC = () => {
         nextHref="/room/register/title"
       />
     </Container>
-  );
-};
+  )
+}
 
-export default RegisterRoomDescription;
+export default RegisterRoomDescription

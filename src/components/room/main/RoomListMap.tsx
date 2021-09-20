@@ -91,7 +91,7 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
   }
 
   window.initMap = () => {
-    //* 지도 불러오기
+    // 지도 불러오기
     if (mapRef.current) {
       const map = new google.maps.Map(mapRef.current, {
         center: {

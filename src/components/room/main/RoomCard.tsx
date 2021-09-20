@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
-import styled, { css } from "styled-components";
-import differenceInDays from "date-fns/differenceInDays";
-import Link from "next/link";
-import { RoomType } from "../../../../types/room";
-import palette from "../../../styles/palette";
-import { useSelector } from "../../../../store";
-import { makeMoneyString } from "../../../lib/utils";
+import React, { useMemo } from 'react'
+import styled, { css } from 'styled-components'
+import differenceInDays from 'date-fns/differenceInDays'
+import Link from 'next/link'
+import { RoomType } from '../../../../types/room'
+import palette from '../../../styles/palette'
+import { useSelector } from '../../../../store'
+import { makeMoneyString } from '../../../lib/utils'
 
 const Container = styled.li<{ showMap: boolean }>`
   width: calc((100% - 48px) / 4);
@@ -128,35 +128,35 @@ const Container = styled.li<{ showMap: boolean }>`
         }
       }
     `}
-`;
+`
 
 interface IProps {
-  room: RoomType;
-  showMap: boolean;
+  room: RoomType
+  showMap: boolean
 }
 
 const RoomCard: React.FC<IProps> = ({ room, showMap }) => {
-  const checkInDate = useSelector((state) => state.searchRoom.checkInDate);
-  const checkOutDate = useSelector((state) => state.searchRoom.checkOutDate);
+  const checkInDate = useSelector((state) => state.searchRoom.checkInDate)
+  const checkOutDate = useSelector((state) => state.searchRoom.checkOutDate)
 
   const remainDays =
     checkOutDate &&
     checkInDate &&
-    differenceInDays(new Date(checkOutDate), new Date(checkInDate));
+    differenceInDays(new Date(checkOutDate), new Date(checkInDate))
 
-  //* 한글로 된 숙소 유형
+  // 한글로 된 숙소 유형
   const translatedRoomType = useMemo(() => {
     switch (room.roomType) {
-      case "entire":
-        return "집 전체";
-      case "private":
-        return "개인실";
-      case "public":
-        return "공용";
+      case 'entire':
+        return '집 전체'
+      case 'private':
+        return '개인실'
+      case 'public':
+        return '공용'
       default:
-        return "";
+        return ''
     }
-  }, []);
+  }, [])
   return (
     <Container showMap={showMap}>
       <Link href={`/room/${room.id}`}>
@@ -166,7 +166,7 @@ const RoomCard: React.FC<IProps> = ({ room, showMap }) => {
           </div>
           <div className="room-card-info-texts">
             <p className="room-card-room-info">
-              {room.buildingType} {translatedRoomType} {room.district}{" "}
+              {room.buildingType} {translatedRoomType} {room.district}{' '}
               {room.city}
             </p>
             <p className="room-card-title">{room.title}</p>
@@ -185,7 +185,7 @@ const RoomCard: React.FC<IProps> = ({ room, showMap }) => {
         </a>
       </Link>
     </Container>
-  );
-};
+  )
+}
 
-export default RoomCard;
+export default RoomCard
