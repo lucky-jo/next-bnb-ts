@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import styled from "styled-components";
+import React, { useRef, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+import styled from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
@@ -18,53 +18,56 @@ const Container = styled.div`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
   }
-`;
+`
 
 const useModal = () => {
-  const [modalOpened, setModalOpend] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false)
 
   const openModal = () => {
-    setModalOpend(true);
-  };
+    setModalOpened(true)
+  }
 
   const closeModal = () => {
-    setModalOpend(false);
-  };
+    setModalOpened(false)
+  }
 
   interface IProps {
-    children: React.ReactNode;
+    children: React.ReactNode
   }
 
   const ModalPortal: React.FC<IProps> = ({ children }) => {
-    const ref = useRef<Element | null>();
-    const [mounted, setMounted] = useState(false);
+    const ref = useRef<Element | null>()
+    const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
-      setMounted(true);
+      setMounted(true)
       if (document) {
-        const dom = document.querySelector("#root-modal");
-        ref.current = dom;
+        const dom = document.querySelector('#root-modal')
+        ref.current = dom
       }
-    }, []);
+    }, [])
 
     if (ref.current && mounted && modalOpened) {
       return createPortal(
         <Container>
-          <div className="modal-background" role="presentation">
-            {children}
-          </div>
+          <div
+            className="modal-background"
+            role="presentation"
+            onClick={closeModal}
+          />
+          {children}
         </Container>,
         ref.current
-      );
+      )
     }
-    return null;
-  };
+    return null
+  }
 
   return {
     openModal,
     closeModal,
     ModalPortal,
-  };
-};
+  }
+}
 
-export default useModal;
+export default useModal
